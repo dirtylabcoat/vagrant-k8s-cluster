@@ -1,5 +1,10 @@
 #!/bin/bash
-kubeadm init
+KUBEINITLOG=/vagrant/kubeinit.log
+KUBENODEJOIN=/vagrant/kubenodejoin.sh
+kubeadm init --apiserver-advertise-address=10.0.0.20 > $KUBEINITLOG
+echo '#!/bin/bash' > $KUBENODEJOIN
+tail -n3 $KUBEINITLOG >> $KUBENODEJOIN
+chmod +x $KUBENODEJOIN
 USER_HOME=/home/vagrant
 USER_GROUP_IDS=$(id vagrant -u):$(id vagrant -g)
 mkdir -p $USER_HOME/.kube
@@ -9,4 +14,3 @@ chown $USER_GROUP_IDS $USER_HOME/.kube/config
 # Install Flannel pod network
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-rbac.yml
-

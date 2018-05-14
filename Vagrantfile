@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             vb.name = "kubemaster"
             vb.customize ["modifyvm", :id, "--memory", "1024"]
         end
-        #subconfig.vm.provision :shell, path: "kubemaster-provision.sh"
+        subconfig.vm.provision :shell, path: "kubemaster-provision.sh"
     end
     config.vm.define "kubeworker1" do |subconfig|
         subconfig.vm.box = BOX_IMAGE
@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             vb.name = "kubeworker2"
             vb.customize ["modifyvm", :id, "--memory", "1024"]
         end
-       # subconfig.vm.provision :shell, path: "kubeworker-provision.sh"
+        subconfig.vm.provision :shell, path: "kubeworker-provision.sh"
     end
     config.vm.provision "shell", inline: <<-SHELL
         apt-get update
@@ -51,4 +51,3 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         sed -i -e 's/^\(.*swap.*\)/#\1/g' /etc/fstab
     SHELL
 end
-
