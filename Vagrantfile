@@ -5,7 +5,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         subconfig.vm.box = BOX_IMAGE
         subconfig.vm.hostname = "kubemaster"
         subconfig.vm.network :private_network, ip: "10.0.0.20"
-        #subconfig.vm.network :forwarded_port, guest: 8080, host: 8888
         subconfig.vm.provider :virtualbox do |vb|
             vb.name = "kubemaster"
             vb.customize ["modifyvm", :id, "--memory", "1024"]
@@ -16,7 +15,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         subconfig.vm.box = BOX_IMAGE
         subconfig.vm.hostname = "kubeworker1"
         subconfig.vm.network :private_network, ip: "10.0.0.21"
-        #subconfig.vm.network :forwarded_port, guest: 8080, host: 8888
         subconfig.vm.provider :virtualbox do |vb|
             vb.name = "kubeworker1"
             vb.customize ["modifyvm", :id, "--memory", "1024"]
@@ -27,7 +25,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         subconfig.vm.box = BOX_IMAGE
         subconfig.vm.hostname = "kubeworker2"
         subconfig.vm.network :private_network, ip: "10.0.0.22"
-        #subconfig.vm.network :forwarded_port, guest: 8080, host: 8888
         subconfig.vm.provider :virtualbox do |vb|
             vb.name = "kubeworker2"
             vb.customize ["modifyvm", :id, "--memory", "1024"]
