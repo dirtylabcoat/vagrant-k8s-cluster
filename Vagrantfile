@@ -7,7 +7,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         subconfig.vm.network :private_network, ip: "10.0.0.20"
         subconfig.vm.provider :virtualbox do |vb|
             vb.name = "kubemaster"
-            vb.customize ["modifyvm", :id, "--memory", "1024"]
+            vb.customize ["modifyvm", :id, "--memory", "2048"]
+            #vb.customize ["modifyvm", :id, "--cpus", 2]
         end
         subconfig.vm.provision :shell, path: "kubemaster-provision.sh"
     end
