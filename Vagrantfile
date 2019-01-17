@@ -1,5 +1,5 @@
 VAGRANTFILE_API_VERSION = "2"
-BOX_IMAGE = "fso/xenial64"
+BOX_IMAGE = "fso/bionic64"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "kubemaster" do |subconfig|
         subconfig.vm.box = BOX_IMAGE
