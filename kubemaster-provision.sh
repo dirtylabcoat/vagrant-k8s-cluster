@@ -1,7 +1,7 @@
 #!/bin/bash
 KUBEINITLOG=/vagrant/kubeinit.log
 KUBENODEJOIN=/vagrant/kubenodejoin.sh
-kubeadm init --apiserver-advertise-address=192.168.1.240 --apiserver-cert-extra-sans=localhost,localhost.localdomain,127.0.0.1 --pod-network-cidr 10.244.0.0/16 | tee $KUBEINITLOG
+kubeadm init --apiserver-advertise-address=$MASTERIP | tee $KUBEINITLOG
 echo '#!/bin/bash' > $KUBENODEJOIN
 grep "kubeadm join" $KUBEINITLOG >> $KUBENODEJOIN
 chmod +x $KUBENODEJOIN
